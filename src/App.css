@@ -1,6 +1,6 @@
 body {
     font-family: 'Josefin Sans';
-    background-color: #FFFAFB;
+    background-color: #ffffff;
 }
 
 * {
@@ -9,6 +9,8 @@ body {
     box-sizing: border-box;
 
 }
+
+
 
 ::-webkit-scrollbar {
     width: 0px;
@@ -93,8 +95,8 @@ body {
 }
 
 .search-btn:hover {
-    color: #FF2625 !important;
-    border: 1px solid #FF2625 !important;
+    color: #30B040 !important;
+    border: 1px solid #30B040 !important;
 }
 
 .exercise-video {

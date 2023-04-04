@@ -28,6 +28,17 @@ const Banner = () => {
                 }}
                 variant="contained"
             >Checkout Exercises</Button>
+            <Typography
+                fontWeight={600}
+                color="#3A1212"
+                sx={{
+                    opacity: 0.1,
+                    display: {lg: "block", xs: "none"}
+                }}
+                fontSize="200px"
+            >
+            Exercise
+            </Typography>
             <img
                 src={BannerImage}
                 alt="banner"
