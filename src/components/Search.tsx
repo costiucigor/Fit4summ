@@ -10,6 +10,7 @@ interface SearchProps {
     setBodyPart: (bodyPart: string) => void;
 }
 
+
 const Search: React.FC<SearchProps> = ({ setExercises, bodyPart, setBodyPart }) => {
     const [search, setSearch] = useState('');
     const [bodyParts, setBodyParts] = useState<string[]>([]);
