@@ -26,6 +26,7 @@ const NavBar = () => {
                 gap="40px"
                 fontSize="24px"
                 alignItems="flex-end"
+                fontFamily= 'Raleway, Arial'
             >
                 <Link to="/"
                       style={{

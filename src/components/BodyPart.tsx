@@ -1,8 +1,15 @@
-import React from 'react';
+import {FC, React} from 'react';
 import { Stack, Typography } from "@mui/material"
 import Icon from "../assets/images/Logo.png"
 
-const BodyPart = ({item, setBodyPart, bodyPart}) => {
+
+type BodyPartProps = {
+    item: boolean;
+    setBodyPart: (part: string) => void;
+    bodyPart: string;
+};
+
+const BodyPart: FC<BodyPartProps> = ({ item, setBodyPart, bodyPart }) => {
     return (
         <Stack
             type="button"
@@ -22,6 +29,7 @@ const BodyPart = ({item, setBodyPart, bodyPart}) => {
             }
         >
             <img src={Icon} alt="dumbell" styles={{width: "40px", height: "40px"}}/>
+            <Typography fontSize="24px" fontWeight="bold" fontFamily="Alegreya" color="#3A1212" textTransform="capitalize"> {item}</Typography>
         </Stack>
     );
 };
