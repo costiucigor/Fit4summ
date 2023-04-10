@@ -15,12 +15,11 @@ const HorizontalScrollBar: React.FC<HorizontalScrollBarProps> = ({ data, bodyPar
                 <Box
                     key={item.id || item.name}
                     itemID={item.id || item.name}
-                    tittle={item.id || item.name}
+                    title={item.id || item.name}
                     m="0 50px"
                 >
                     <BodyPart
                         item={item}
-                        bodyPart={bodyPart}
                         bodyPart={bodyPart}
                         setBodyPart={setBodyPart}
                     />
