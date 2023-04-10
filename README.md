@@ -1,4 +1,31 @@
 # Fit4summ
+# Documentarea aplicației FIT4SUMM
+
+ 
+
+Scopul acestui proiect este crearea unui site care va găzdui videoclipuri legate de sport, cu o interfață intuitivă și ușor de utilizat. Site-ul va permite utilizatorilor să vizualizeze videoclipuri, să caute și să sorteze videoclipuri în funcție de sport, categorie sau popularitate.
+
+Cerințe tehnice:
+
+1. Design și experiență utilizator (UX/UI):
+    - Site-ul trebuie să aibă un design atractiv, intuitiv și ușor de utilizat.
+    - Experiența utilizatorului trebuie să fie una fluidă, fără întreruperi sau întârzieri la încărcare.
+    - Site-ul trebuie să fie responsive și să se adapteze la diferite dimensiuni de ecrane.
+2. Gestionarea videoclipurilor:
+    - Videoclipurile trebuie să fie încărcate și stocate de pe un api open source.
+    - Videoclipurile trebuie să fie organizate în categorii specifice sporturilor și să poată fi căutate și sortate în funcție de popularitate sau rating.
+3. Performanță:
+    - Site-ul trebuie să fie rapid și să ofere o performanță bună, chiar și la utilizarea simultană de către mai mulți utilizatori.
+    - Videoclipurile trebuie să se încarce rapid și să ofere o experiență fără întreruperi sau întârzieri.
+4. Platforme și tehnologii:
+    - Site-ul trebuie să fie compatibil cu cele mai populare browsere și să ruleze pe sisteme de operare diferite.
+    - Tehnologiile folosite trebuie să permită extensibilitatea și scalabilitatea site-ului, în funcție de nevoile viitoare.
+5. Testare și mentenanță:
+    - Site-ul trebuie să fie testat riguros pentru a se asigura că toate funcționalitățile sunt în ordine și nu există bug-uri.
+    - Site-ul trebuie să fie ușor de întreținut și de actualizat.
+
+
+
 Learning from scratch 
 
 The useState hook is used to create two state variables: search and bodyParts. The search state is used to store the user's search input, and the bodyParts state is used to store the list of body parts available for filtering exercises.
