@@ -3,10 +3,11 @@ import { Box } from '@mui/material';
 import BodyPart from './BodyPart';
 
 interface HorizontalScrollBarProps {
-    data: string[];
+    data: { id?: string; name?: string }[];
     bodyPart: string;
     setBodyPart: (bodyPart: string) => void;
 }
+
 
 const HorizontalScrollBar: React.FC<HorizontalScrollBarProps> = ({ data, bodyPart, setBodyPart }) => {
     // @ts-ignore
@@ -21,7 +22,7 @@ const HorizontalScrollBar: React.FC<HorizontalScrollBarProps> = ({ data, bodyPar
                     m="0 50px"
                 >
                     <BodyPart
-                        item={item}
+                        isSelected={item}
                         bodyPart={bodyPart}
                         setBodyPart={setBodyPart}
                     />

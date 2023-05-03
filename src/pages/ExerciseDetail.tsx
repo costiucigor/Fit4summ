@@ -7,8 +7,20 @@ import Detail from '../components/Details';
 import ExerciseVideos from '../components/ExerciseVideos';
 import SimilarExercises from '../components/SimilarExercises';
 
+interface ExerciseDetail {
+    name: string;
+    target: string;
+    equipment: string;
+    description: string;
+    muscles: string[];
+    muscleSecondary: string[];
+    type: string;
+    force: string;
+    mechanics: string;
+}
+
 const ExerciseDetail = () => {
-    const [exerciseDetail, setExerciseDetail] = useState({});
+    const [exerciseDetail, setExerciseDetail] = useState<ExerciseDetail | null>(null);
     const [exerciseVideos, setExerciseVideos] = useState([]);
     const [targetMuscleExercises, setTargetMuscleExercises] = useState([]);
     const [equipmentExercises, setEquipmentExercises] = useState([]);
@@ -30,8 +42,8 @@ const ExerciseDetail = () => {
             const targetMuscleExercisesData = await fetchData(`${exerciseDbUrl}/exercises/target/${exerciseDetailData.target}`, exerciseOptions);
             setTargetMuscleExercises(targetMuscleExercisesData);
 
-            const equimentExercisesData = await fetchData(`${exerciseDbUrl}/exercises/equipment/${exerciseDetailData.equipment}`, exerciseOptions);
-            setEquipmentExercises(equimentExercisesData);
+            const equipmentExercisesData = await fetchData(`${exerciseDbUrl}/exercises/equipment/${exerciseDetailData.equipment}`, exerciseOptions);
+            setEquipmentExercises(equipmentExercisesData);
         };
 
         fetchExercisesData();
