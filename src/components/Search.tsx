@@ -13,12 +13,13 @@ interface SearchProps {
 
 const Search: React.FC<SearchProps> = ({ setExercises, bodyPart, setBodyPart }) => {
     const [search, setSearch] = useState('');
-    const [bodyParts, setBodyParts] = useState<string[]>([]);
+    const [bodyParts, setBodyParts] = useState([]);
 
     useEffect(() => {
         const fetchExercisesData = async () => {
             const bodyPartsData = await fetchData('https://exercisedb.p.rapidapi.com/exercises/bodyPartList', exerciseOptions);
 
+            // @ts-ignore
             setBodyParts(['all', ...bodyPartsData]);
         };
 
@@ -30,11 +31,10 @@ const Search: React.FC<SearchProps> = ({ setExercises, bodyPart, setBodyPart }) 
             const exercisesData = await fetchData('https://exercisedb.p.rapidapi.com/exercises', exerciseOptions);
 
             const searchedExercises = exercisesData.filter(
-                (item: any) =>
-                    item.name.toLowerCase().includes(search) ||
-                    item.target.toLowerCase().includes(search) ||
-                    item.equipment.toLowerCase().includes(search) ||
-                    item.bodyPart.toLowerCase().includes(search)
+                (item: { name: string; target: string; equipment: string; bodyPart: string; }) => item.name.toLowerCase().includes(search)
+                    || item.target.toLowerCase().includes(search)
+                    || item.equipment.toLowerCase().includes(search)
+                    || item.bodyPart.toLowerCase().includes(search),
             );
 
             window.scrollTo({ top: 1800, left: 100, behavior: 'smooth' });
@@ -43,52 +43,27 @@ const Search: React.FC<SearchProps> = ({ setExercises, bodyPart, setBodyPart }) 
             setExercises(searchedExercises);
         }
     };
+
+    // @ts-ignore
     return (
         <Stack alignItems="center" mt="37px" justifyContent="center" p="20px">
-            <Typography
-                fontWeight="700"
-                sx={{
-                    fontSize: { lg: '44px', xs: '30px' },
-                }}
-                mb="50px"
-                textAlign="center"
-            >
-                Believe in yourself and all that you are.
-                <br /> Know that there is something inside you that is greater than any obstacle.
+            <Typography fontWeight={700} sx={{ fontSize: { lg: '44px', xs: '30px' } }} mb="49px" textAlign="center">
+                Awesome Exercises You <br /> Should Know
             </Typography>
             <Box position="relative" mb="72px">
                 <TextField
-                    sx={{
-                        input: {
-                            fontWeight: '600',
-                            borderRadius: '6px',
-                        },
-                        width: { lg: '1170px', xs: '360px' },
-                    }}
+                    sx={{ input: { fontWeight: '700', border: 'none', borderRadius: '4px' }, width: { lg: '1170px', xs: '350px' }, backgroundColor: '#fff', borderRadius: '40px' }}
                     value={search}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value.toLowerCase())}
-                    placeholder="Search Exercise"
+                    onChange={(e) => setSearch(e.target.value.toLowerCase())}
+                    placeholder="Search Exercises"
                     type="text"
                 />
-                <Button
-                    className="search-btn"
-                    sx={{
-                        bgcolor: '#30B040',
-                        color: '#fff',
-                        textTransform: 'none',
-                        width: { lg: '174px', xs: '100px' },
-                        fontSize: { lg: '20px', xs: '14px' },
-                        height: '56px',
-                        position: 'absolute',
-                        right: '0',
-                    }}
-                    onClick={handleSearch}
-                >
+                <Button className="search-btn" sx={{ bgcolor: '#FF2625', color: '#fff', textTransform: 'none', width: { lg: '173px', xs: '80px' }, height: '56px', position: 'absolute', right: '0px', fontSize: { lg: '20px', xs: '14px' } }} onClick={handleSearch}>
                     Search
                 </Button>
             </Box>
             <Box sx={{ position: 'relative', width: '100%', p: '20px' }}>
-                <HorizontalScrollBar data={bodyParts} bodyPart={bodyPart} setBodyPart={setBodyPart} />
+                <HorizontalScrollBar data={bodyParts} bodyParts setBodyPart={setBodyPart} bodyPart={bodyPart} />
             </Box>
         </Stack>
     );

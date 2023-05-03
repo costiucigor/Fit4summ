@@ -7,11 +7,12 @@ import Search from "../components/Search";
 const Home = () => {
     const [bodyPart, setBodyPart] = useState("all");
     const [exercises, setExercises] = useState([]);
+    // @ts-ignore
     return (
         <div>
-            <Banner setExercises={setExercises} bodyPart={bodyPart} setBodyPart={setBodyPart}/>
-            <Search setExercises={setExercises} bodyPart={bodyPart} setBodyPart={setBodyPart}/>
-            <Exercises setExercises={setExercises} bodyPart={bodyPart} setBodyPart={setBodyPart}/>
+            <Banner/>
+            <Search setExercises={setExercises} bodyPart={bodyPart} setBodyPart={setBodyPart} />
+            <Exercises setExercises={setExercises} exercises={exercises} bodyPart={bodyPart} />
         </div>
     );
 };

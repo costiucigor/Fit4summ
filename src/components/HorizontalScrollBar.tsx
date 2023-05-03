@@ -9,6 +9,8 @@ interface HorizontalScrollBarProps {
 }
 
 const HorizontalScrollBar: React.FC<HorizontalScrollBarProps> = ({ data, bodyPart, setBodyPart }) => {
+    // @ts-ignore
+    // @ts-ignore
     return (
         <div>
             {data.map((item) => (
