@@ -25,7 +25,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #FF2625;
+    color: #30B040;
     font-size: 24px;
     border-radius: 4px;
     position: absolute;
@@ -69,7 +69,7 @@ body {
     width: 400px;
     height: 446px;
     background: #fff;
-    border-top: 4px solid #FF2625;
+    border-top: 4px solid #30B040;
     border-bottom-left-radius: 20px;
     text-decoration: none;
     display: flex;

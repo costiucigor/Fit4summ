@@ -5,7 +5,6 @@ import { Box } from '@mui/material';
 import { exerciseOptions, fetchData, youtubeOptions } from '../utils/fetchData';
 import Detail from '../components/Details';
 import ExerciseVideos from '../components/ExerciseVideos';
-import SimilarExercises from '../components/SimilarExercises';
 
 interface ExerciseDetail {
     name: string;
@@ -22,8 +21,6 @@ interface ExerciseDetail {
 const ExerciseDetail = () => {
     const [exerciseDetail, setExerciseDetail] = useState<ExerciseDetail | null>(null);
     const [exerciseVideos, setExerciseVideos] = useState([]);
-    const [targetMuscleExercises, setTargetMuscleExercises] = useState([]);
-    const [equipmentExercises, setEquipmentExercises] = useState([]);
     const { id } = useParams();
 
     useEffect(() => {
@@ -38,12 +35,6 @@ const ExerciseDetail = () => {
 
             const exerciseVideosData = await fetchData(`${youtubeSearchUrl}/search?query=${exerciseDetailData.name} exercise`, youtubeOptions);
             setExerciseVideos(exerciseVideosData.contents);
-
-            const targetMuscleExercisesData = await fetchData(`${exerciseDbUrl}/exercises/target/${exerciseDetailData.target}`, exerciseOptions);
-            setTargetMuscleExercises(targetMuscleExercisesData);
-
-            const equipmentExercisesData = await fetchData(`${exerciseDbUrl}/exercises/equipment/${exerciseDetailData.equipment}`, exerciseOptions);
-            setEquipmentExercises(equipmentExercisesData);
         };
 
         fetchExercisesData();
@@ -55,7 +46,6 @@ const ExerciseDetail = () => {
         <Box sx={{ mt: { lg: '96px', xs: '60px' } }}>
             <Detail exerciseDetail={exerciseDetail} />
             <ExerciseVideos exerciseVideos={exerciseVideos} name={exerciseDetail.name} />
-            <SimilarExercises targetMuscleExercises={targetMuscleExercises} equipmentExercises={equipmentExercises} />
         </Box>
     );
 };
