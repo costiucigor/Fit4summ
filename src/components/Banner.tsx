@@ -3,6 +3,10 @@ import {Box, Stack, Typography, Button} from "@mui/material";
 
 import BannerImage from "../assets/images/banner.png"
 
+const scrollToExercises = () => {
+    window.scrollTo({ top: 1800, left: 100, behavior: 'smooth' });
+}
+
 const Banner = () => {
     return (
         <Box sx={{
@@ -27,6 +31,7 @@ const Banner = () => {
                     },
                 }}
                 variant="contained"
+                onClick={scrollToExercises}
             >Checkout Exercises</Button>
             <Typography
                 fontWeight={600}

@@ -36,6 +36,12 @@ const NavBar = () => {
                       }
                 }>Home</Link>
                 <a href="#exercises" style={{textDecoration: "none", color: "#3A1212"}}>Exercises</a>
+                <Link to="/CalculateExercise"
+                      style={{
+                          textDecoration: "none",
+                          color: "#3A1212",
+                      }
+                      }>Calculate exercise</Link>
             </Stack>
         </Stack>
     );

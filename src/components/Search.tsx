@@ -9,7 +9,6 @@ interface SearchProps {
     setBodyPart: (bodyPart: string) => void;
 }
 
-
 const Search: React.FC<SearchProps> = ({ setExercises, bodyPart, setBodyPart }) => {
     const [search, setSearch] = useState('');
     const [bodyParts, setBodyParts] = useState([]);
@@ -47,7 +46,7 @@ const Search: React.FC<SearchProps> = ({ setExercises, bodyPart, setBodyPart }) 
     return (
         <Stack alignItems="center" mt="37px" justifyContent="center" p="20px">
             <Typography fontWeight={700} sx={{ fontSize: { lg: '44px', xs: '30px' } }} mb="49px" textAlign="center">
-                Awesome Exercises You <br /> Should Know
+                Get strong <br /> Get fit!
             </Typography>
             <Box position="relative" mb="72px">
                 <TextField
