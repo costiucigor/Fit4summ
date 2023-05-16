@@ -7,6 +7,8 @@ Scopul acestui proiect este crearea unui site care va găzdui videoclipuri legat
 
 Cerințe tehnice:
 
+To do: move api to strapi
+
 1. Design și experiență utilizator (UX/UI):
     - Site-ul trebuie să aibă un design atractiv, intuitiv și ușor de utilizat.
     - Experiența utilizatorului trebuie să fie una fluidă, fără întreruperi sau întârzieri la încărcare.
