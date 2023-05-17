@@ -1,93 +1,133 @@
 import React, { useState } from 'react';
+import {
+    Typography,
+    Box,
+    TextField,
+    FormControl,
+    InputLabel,
+    Select,
+    MenuItem,
+    Button,
+    List,
+    ListItem,
+} from '@mui/material';
 
 const ExerciseCalculator = () => {
     const [age, setAge] = useState<number | ''>('');
+    const [formSubmited, setFormSubmited] = useState<boolean>(false)
     const [fitnessLevel, setFitnessLevel] = useState<string>('');
     const [goal, setGoal] = useState<string>('');
     const [exercises, setExercises] = useState<string[]>([]);
 
-    const calculateExercises = (event: any) => {
-        event.preventDefault()
-        let calculatedExercises: string[] = [];
+    const calculateExercises = (event: React.FormEvent) => {
+        event.preventDefault();
 
-        if (age >= 18 && fitnessLevel === 'beginner') {
-            if (goal === 'weight-loss') {
-                calculatedExercises = ['Push-ups', 'Squats', 'Planks', 'Running'];
-            } else if (goal === 'muscle-gain') {
-                calculatedExercises = ['Push-ups', 'Squats', 'Planks', 'Dumbbell curls'];
-            } else if (goal === 'endurance') {
-                calculatedExercises = ['Push-ups', 'Squats', 'Planks', 'Jumping jacks'];
-            }
-        } else if (age >= 18 && fitnessLevel === 'intermediate') {
-            if (goal === 'weight-loss') {
-                calculatedExercises = ['Burpees', 'Lunges', 'Mountain climbers', 'Cycling'];
-            } else if (goal === 'muscle-gain') {
-                calculatedExercises = ['Burpees', 'Lunges', 'Mountain climbers', 'Bench press'];
-            } else if (goal === 'endurance') {
-                calculatedExercises = ['Burpees', 'Lunges', 'Mountain climbers', 'Swimming'];
-            }
-        } else if (age >= 18 && fitnessLevel === 'advanced') {
-            if (goal === 'weight-loss') {
-                calculatedExercises = ['Pull-ups', 'Deadlifts', 'Box jumps', 'HIIT workouts'];
-            } else if (goal === 'muscle-gain') {
-                calculatedExercises = ['Pull-ups', 'Deadlifts', 'Box jumps', 'Barbell squats'];
-            } else if (goal === 'endurance') {
-                calculatedExercises = ['Pull-ups', 'Deadlifts', 'Box jumps', 'Circuit training'];
-            }
+        const exerciseOptions: { [key: string]: { [key: string]: string[] } } = {
+            beginner: {
+                'weight-loss': ['Push-ups', 'Squats', 'Planks', 'Running'],
+                'muscle-gain': ['Push-ups', 'Squats', 'Planks', 'Dumbbell curls'],
+                endurance: ['Push-ups', 'Squats', 'Planks', 'Jumping jacks'],
+            },
+            intermediate: {
+                'weight-loss': ['Burpees', 'Lunges', 'Mountain climbers', 'Cycling'],
+                'muscle-gain': ['Burpees', 'Lunges', 'Mountain climbers', 'Bench press'],
+                endurance: ['Burpees', 'Lunges', 'Mountain climbers', 'Swimming'],
+            },
+            advanced: {
+                'weight-loss': ['Pull-ups', 'Deadlifts', 'Box jumps', 'HIIT workouts'],
+                'muscle-gain': ['Pull-ups', 'Deadlifts', 'Box jumps', 'Barbell squats'],
+                endurance: ['Pull-ups', 'Deadlifts', 'Box jumps', 'Circuit training'],
+            },
+        };
+
+        if (age >= 18 && fitnessLevel && goal) {
+            const calculatedExercises = exerciseOptions[fitnessLevel]?.[goal] || [];
+            setExercises(calculatedExercises);
         } else {
-            calculatedExercises = ['Please provide valid age, fitness level, and goal.'];
+            setExercises(['Please provide valid age, fitness level, and goal.']);
         }
-
-        setExercises(calculatedExercises);
+        setFormSubmited(true)
     };
 
     return (
-        <div>
-            <h2>Exercise Calculator</h2>
+        <Box sx={{
+            mt: { lg: '140px', xs: '60px' },
+            height: '70vh', // Set the height to 100% of the viewport height
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+        }}>
+            <Typography
+                sx = {{
+                    mt: "180px",
+                    position: "absolute",
+                    top: 0
+                }}
+                variant="h4"
+            >
+                Exercise Calculator
+            </Typography>
             <form onSubmit={calculateExercises}>
-                <div>
-                    <label>
-                        Age:
-                        <input
-                            type="number"
-                            value={age}
-                            onChange={(e) => setAge(parseInt(e.target.value))}
-                        />
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        Fitness Level:
-                        <select value={fitnessLevel} onChange={(e) => setFitnessLevel(e.target.value)}>
-                            <option value="">Select level</option>
-                            <option value="beginner">Beginner</option>
-                            <option value="intermediate">Intermediate</option>
-                            <option value="advanced">Advanced</option>
-                        </select>
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        Goal:
-                        <select value={goal} onChange={(e) => setGoal(e.target.value)}>
-                            <option value="">Select goal</option>
-                            <option value="weight-loss">Weight Loss</option>
-                            <option value="muscle-gain">Muscle Gain</option>
-                            <option value="endurance">Endurance</option>
-                        </select>
-                    </label>
-                </div>
-                <button type="submit">Calculate</button>
+                <Box mt={2}>
+                    <TextField
+                        type="number"
+                        label="Age"
+                        required
+                        value={age}
+                        onChange={(e) => setAge(parseInt(e.target.value))}
+                    />
+                </Box>
+                <Box mt={2}>
+                    <FormControl fullWidth required>
+                        <InputLabel>Fitness Level</InputLabel>
+                        <Select value={fitnessLevel} onChange={(e) => setFitnessLevel(e.target.value)}>
+                            <MenuItem value="">Select level</MenuItem>
+                            <MenuItem value="beginner">Beginner</MenuItem>
+                            <MenuItem value="intermediate">Intermediate</MenuItem>
+                            <MenuItem value="advanced">Advanced</MenuItem>
+                        </Select>
+                    </FormControl>
+                </Box>
+                <Box mt={2}>
+                    <FormControl fullWidth required>
+                        <InputLabel>Goal</InputLabel>
+                        <Select value={goal} onChange={(e) => setGoal(e.target.value)}>
+                            <MenuItem value="">Select goal</MenuItem>
+                            <MenuItem value="weight-loss">Weight Loss</MenuItem>
+                            <MenuItem value="muscle-gain">Muscle Gain</MenuItem>
+                            <MenuItem value="endurance">Endurance</MenuItem>
+                        </Select>
+                    </FormControl>
+                </Box>
+                <Box mt={2}>
+                    <Button
+                        sx={{
+                            backgroundColor: "#30B040",
+                            '&:hover': {
+                                backgroundColor: '#3DE952',
+                                href:"#exercises"
+                            },
+                        }}
+                        type="submit"
+                        variant="contained"
+                    >
+                        Calculate
+                    </Button>
+                </Box>
             </form>
-            <div>
-                <h3>Recommended Exercises:</h3>
-                <ul>
+            <Box mt={4}>
+                {formSubmited && (
+                    <>
+                <Typography variant="h5">Recommended Exercises:</Typography>
+                <List>
                     {exercises.map((exercise, index) => (
-                        <li key={index}>{exercise}</li>
+                        <ListItem key={index}>{exercise}</ListItem>
                     ))}
-                </ul>
-            </div>
-        </div>
+                </List>
+                    </>
+                )}
+            </Box>
+        </Box>
     );
 };
 
