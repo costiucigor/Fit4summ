@@ -11,6 +11,8 @@ import {
     List,
     ListItem,
 } from '@mui/material';
+import {Route} from "react-router-dom";
+import Home from "./Home";
 
 const ExerciseCalculator = () => {
     const [age, setAge] = useState<number | ''>('');
@@ -48,6 +50,11 @@ const ExerciseCalculator = () => {
         }
         setFormSubmited(true)
     };
+
+    const handleButtonClick = () => {
+        (history as any).push('/');
+    };
+
 
     return (
         <Box sx={{
@@ -105,7 +112,6 @@ const ExerciseCalculator = () => {
                             backgroundColor: "#30B040",
                             '&:hover': {
                                 backgroundColor: '#3DE952',
-                                href:"#exercises"
                             },
                         }}
                         type="submit"
@@ -115,7 +121,14 @@ const ExerciseCalculator = () => {
                     </Button>
                 </Box>
             </form>
-            <Box mt={4}>
+            <Box
+                sx = {{
+                    mt: "380px",
+                    ml: "586px",
+                    position: "absolute",
+                    top: 0
+                }}
+                mt={4}>
                 {formSubmited && (
                     <>
                 <Typography variant="h5">Recommended Exercises:</Typography>
@@ -124,6 +137,17 @@ const ExerciseCalculator = () => {
                         <ListItem key={index}>{exercise}</ListItem>
                     ))}
                 </List>
+                        <Typography variant="h6">Go on and search those</Typography>
+                        <Button
+                            sx={{
+                                backgroundColor: "#30B040",
+                                '&:hover': {
+                                    backgroundColor: '#3DE952',
+                                },
+                            }}
+                            onClick={handleButtonClick}  variant="contained">
+                            Here
+                        </Button>
                     </>
                 )}
             </Box>

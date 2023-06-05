@@ -4,12 +4,14 @@ import { Box, Button, Stack, TextField, Typography } from '@mui/material';
 import { exerciseOptions, fetchData } from '../utils/fetchData';
 
 interface SearchProps {
-    setExercises: (exercises: any[]) => void;
+    setExercises: any;
     bodyPart: string;
     setBodyPart: (bodyPart: string) => void;
 }
 
-const Search: React.FC<SearchProps> = ({ setExercises, bodyPart, setBodyPart }) => {
+
+
+const Search: React.FC<SearchProps> = ({ setExercises}) => {
     const [search, setSearch] = useState('');
     const [bodyParts, setBodyParts] = useState([]);
 
@@ -50,7 +52,6 @@ const Search: React.FC<SearchProps> = ({ setExercises, bodyPart, setBodyPart }) 
             </Typography>
             <Box position="relative" mb="72px">
                 <TextField
-                    height="76px"
                     sx={{ input: { fontWeight: '700', border: 'none', borderRadius: '4px' }, width: { lg: '1170px', xs: '350px' }, backgroundColor: '#fff', borderRadius: '40px' }}
                     value={search}
                     onChange={(e) => setSearch(e.target.value.toLowerCase())}
